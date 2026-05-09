@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Ledger | Showroom Performance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#006e6e",
+                    "primary-fixed": "#d6e3ff",
+                    "on-surface": "#191c1d",
+                    "on-secondary-fixed-variant": "#004f4f",
+                    "surface-container": "#edeeef",
+                    "inverse-primary": "#aec7f7",
+                    "surface-container-highest": "#e1e3e4",
+                    "primary-container": "#1b365d",
+                    "error": "#ba1a1a",
+                    "background": "#f8f9fa",
+                    "tertiary-fixed": "#ffddb9",
+                    "tertiary-container": "#4f2f00",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "secondary-fixed-dim": "#76d6d5",
+                    "inverse-on-surface": "#f0f1f2",
+                    "surface-container-high": "#e7e8e9",
+                    "surface-dim": "#d9dadb",
+                    "on-primary-fixed": "#001b3d",
+                    "outline": "#74777f",
+                    "on-tertiary-fixed": "#2b1700",
+                    "tertiary": "#321c00",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#93f2f2",
+                    "on-tertiary-container": "#c6965e",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#465f88",
+                    "secondary-container": "#90efef",
+                    "on-tertiary-fixed-variant": "#623f0f",
+                    "on-secondary-fixed": "#002020",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#aec7f7",
+                    "surface-variant": "#e1e3e4",
+                    "surface-container-low": "#f3f4f5",
+                    "on-primary-container": "#87a0cd",
+                    "tertiary-fixed-dim": "#f1bd81",
+                    "secondary": "#006a6a",
+                    "primary": "#002046",
+                    "on-background": "#191c1d",
+                    "on-surface-variant": "#44474e",
+                    "on-primary-fixed-variant": "#2e476f",
+                    "surface-bright": "#f8f9fa",
+                    "outline-variant": "#c4c6cf",
+                    "on-primary": "#ffffff",
+                    "surface": "#f8f9fa",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift { background-color: #edeeef; }
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface mb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f8f9fa] dark:bg-slate-900/90 backdrop-blur-md">
+<div class="flex justify-between items-center px-6 h-16 w-full max-w-screen-xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm" data-icon="person">person</span>
+</div>
+<span class="font-manrope font-bold text-lg tracking-tight text-[#002046] dark:text-blue-200">The Ledger</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#002046] dark:text-blue-400" data-icon="search">search</span>
+</div>
+</div>
+</header>
+<main class="pt-20 px-6 max-w-screen-xl mx-auto">
+<!-- Page Headline -->
+<section class="mb-8">
+<p class="font-label text-[10px] font-semibold uppercase tracking-wider text-on-surface-variant mb-1">Performance Analytics</p>
+<h1 class="text-3xl font-extrabold text-primary leading-tight">Showroom Ledger</h1>
+</section>
+<!-- Comparative Chart: Sales vs Margin -->
+<section class="mb-10 bg-surface-container-lowest p-6 rounded-xl">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="text-lg font-bold text-primary">Revenue Velocity</h2>
+<p class="text-sm text-on-surface-variant">Global Sales vs. Net Margin</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-[10px] font-semibold text-on-surface-variant uppercase tracking-tighter">Sales</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<span class="text-[10px] font-semibold text-on-surface-variant uppercase tracking-tighter">Margin</span>
+</div>
+</div>
+</div>
+<!-- Asymmetric Bar Chart Visualization -->
+<div class="flex items-end justify-between h-48 gap-3">
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full flex items-end justify-center gap-1 h-full">
+<div class="w-4 bg-primary rounded-t-lg" style="height: 85%;"></div>
+<div class="w-4 bg-secondary rounded-t-lg" style="height: 45%;"></div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">JAN</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full flex items-end justify-center gap-1 h-full">
+<div class="w-4 bg-primary rounded-t-lg" style="height: 70%;"></div>
+<div class="w-4 bg-secondary rounded-t-lg" style="height: 35%;"></div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">FEB</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full flex items-end justify-center gap-1 h-full">
+<div class="w-4 bg-primary rounded-t-lg" style="height: 95%;"></div>
+<div class="w-4 bg-secondary rounded-t-lg" style="height: 55%;"></div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">MAR</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full flex items-end justify-center gap-1 h-full">
+<div class="w-4 bg-primary rounded-t-lg" style="height: 60%;"></div>
+<div class="w-4 bg-secondary rounded-t-lg" style="height: 30%;"></div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">APR</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full flex items-end justify-center gap-1 h-full">
+<div class="w-4 bg-primary rounded-t-lg" style="height: 80%;"></div>
+<div class="w-4 bg-secondary rounded-t-lg" style="height: 40%;"></div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">MAY</span>
+</div>
+</div>
+</section>
+<!-- Showroom Cards -->
+<section class="space-y-4">
+<h3 class="font-headline font-bold text-primary px-1">Location Performance</h3>
+<!-- NY Flagship -->
+<div class="bg-surface-container-low p-5 rounded-xl flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="luxury modern office showroom in New York with floor to ceiling windows and minimalist designer furniture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7LlnTRa8HpE1Pl4qyswQa05khXbU0ruqkuGZUkEhjQ0mI4KQ6fPWSA9D4vZd4cW3MlKi-Csuw4J1I5PX40qMlobYd5jE84tbTzq4g4LHsJyN3IV75sXli3crNekgnK6UNzIQNRoqFRmPnB4LAHDFCWdflUL-s7b75Xfvoyqu35rbI6rbKFcGnn6fNPxPgj9aT-x_nR8w3A-6IKSVfQpMHOEOgn8ncSlhUiuIrBtqYUgMZGNC-Q1bntmWXY2_ZqyeIDZKD0cWqFOaN"/>
+</div>
+<div>
+<h4 class="font-bold text-primary">NY Flagship</h4>
+<p class="text-[10px] font-semibold text-secondary uppercase tracking-widest flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Primary Hub
+                            </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="more_vert">more_vert</span>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-2">
+<div class="bg-surface-container-lowest p-3 rounded-lg">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase">Net Sales</p>
+<p class="text-lg font-extrabold text-primary">$1,240,492</p>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-lg">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase">Expenses</p>
+<p class="text-lg font-extrabold text-error">$342,100</p>
+</div>
+</div>
+</div>
+<!-- London Hub -->
+<div class="bg-surface-container-low p-5 rounded-xl flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="contemporary design studio in London with brick walls industrial lighting and modern workstations" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGTBQZAVzBP2OSX63c4Qb6UHA6482-PsBdNaV74C7sqNWNqIPk8F-S7tnMhKLLR2o_P2lZh-YHzMATEAgMvsqJw_vx--oeQtb5TZwmiFWdr3pdvOwj22EfG7tuqBqLyxgm0Ohz08MOx6fFpmWke0Sx9R6rwjiPPucV3RG_ZhclM8oT04-yyvSJjVjs-VfgYT7M87lITBe50fA6fYpo8NFk8Nk95nHOBuB6IyOb1P5I9jyHdVoTqVkyIEet3t0EGcf_b4sNa2LA2q2b"/>
+</div>
+<div>
+<h4 class="font-bold text-primary">London Hub</h4>
+<p class="text-[10px] font-semibold text-on-tertiary-container uppercase tracking-widest flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container"></span> European Ops
+                            </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="more_vert">more_vert</span>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-2">
+<div class="bg-surface-container-lowest p-3 rounded-lg">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase">Net Sales</p>
+<p class="text-lg font-extrabold text-primary">$892,110</p>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-lg">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase">Expenses</p>
+<p class="text-lg font-extrabold text-error">$210,040</p>
+</div>
+</div>
+</div>
+<!-- Tokyo Atelier -->
+<div class="bg-surface-container-low p-5 rounded-xl flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="minimalist Japanese architecture showroom with clean lines natural wood accents and soft ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEWrUNOV7HIuf3qqQ-0YXutMwBV17LlD8r7o6E2YwyZ_0EPGC1vPIScAeI9173Js8Gk9NN4WzmnhTBp3JOB-b5nCSpATELX3gcwGY08UCmfbtHIPyc8rdiEzCo-T8lFSg3tK6rFO3yLlMcvfEaso7N_ZWQFW7DOGRlwVnhbYdTUj1e5DfyvpP5Y-qufG9Xe05omJd-XNhYThlUeyPVC3tHzoonfSi2x7M0o_xdRWnFL9Gn3aBAKBZSQmH0h7RRdY4uFrBYobgZf7Mi"/>
+</div>
+<div>
+<h4 class="font-bold text-primary">Tokyo Atelier</h4>
+<p class="text-[10px] font-semibold text-secondary uppercase tracking-widest flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Growth Sector
+                            </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="more_vert">more_vert</span>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-2">
+<div class="bg-surface-container-lowest p-3 rounded-lg">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase">Net Sales</p>
+<p class="text-lg font-extrabold text-primary">$640,000</p>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-lg">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase">Expenses</p>
+<p class="text-lg font-extrabold text-error">$150,220</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Summary Tonal Layer -->
+<section class="mt-8 mb-4 p-6 bg-primary text-white rounded-2xl shadow-xl">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-sm font-bold uppercase tracking-widest opacity-80">Total Liquidity</h3>
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<div class="mb-4">
+<p class="text-4xl font-extrabold tracking-tighter font-headline">$2,772,602</p>
+<p class="text-xs font-semibold mt-1 opacity-70">+12.4% vs Last Quarter</p>
+</div>
+<div class="h-1 w-full bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-secondary-fixed rounded-full" style="width: 72%;"></div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl z-50 border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_24px_rgba(0,32,70,0.04)]">
+<div class="flex flex-col items-center justify-center bg-[#002046] text-white dark:bg-blue-600 rounded-xl px-3 py-1.5 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#44474E] dark:text-slate-500 px-3 py-1.5 hover:text-[#1B365D] dark:hover:text-blue-200 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Orders</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#44474E] dark:text-slate-500 px-3 py-1.5 hover:text-[#1B365D] dark:hover:text-blue-200 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Customers</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#44474E] dark:text-slate-500 px-3 py-1.5 hover:text-[#1B365D] dark:hover:text-blue-200 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined" data-icon="factory">factory</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Inventory</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#44474E] dark:text-slate-500 px-3 py-1.5 hover:text-[#1B365D] dark:hover:text-blue-200 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">More</span>
+</div>
+</nav>
+</body></html>

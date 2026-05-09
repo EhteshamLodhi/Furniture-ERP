@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Ledger | Raw Material Stock</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#006e6e",
+                        "primary-fixed": "#d6e3ff",
+                        "on-surface": "#191c1d",
+                        "on-secondary-fixed-variant": "#004f4f",
+                        "surface-container": "#edeeef",
+                        "inverse-primary": "#aec7f7",
+                        "surface-container-highest": "#e1e3e4",
+                        "primary-container": "#1b365d",
+                        "error": "#ba1a1a",
+                        "background": "#f8f9fa",
+                        "tertiary-fixed": "#ffddb9",
+                        "tertiary-container": "#4f2f00",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "secondary-fixed-dim": "#76d6d5",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-dim": "#d9dadb",
+                        "on-primary-fixed": "#001b3d",
+                        "outline": "#74777f",
+                        "on-tertiary-fixed": "#2b1700",
+                        "tertiary": "#321c00",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#93f2f2",
+                        "on-tertiary-container": "#c6965e",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#465f88",
+                        "secondary-container": "#90efef",
+                        "on-tertiary-fixed-variant": "#623f0f",
+                        "on-secondary-fixed": "#002020",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#aec7f7",
+                        "surface-variant": "#e1e3e4",
+                        "surface-container-low": "#f3f4f5",
+                        "on-primary-container": "#87a0cd",
+                        "tertiary-fixed-dim": "#f1bd81",
+                        "secondary": "#006a6a",
+                        "primary": "#002046",
+                        "on-background": "#191c1d",
+                        "on-surface-variant": "#44474e",
+                        "on-primary-fixed-variant": "#2e476f",
+                        "surface-bright": "#f8f9fa",
+                        "outline-variant": "#c4c6cf",
+                        "on-primary": "#ffffff",
+                        "surface": "#f8f9fa",
+                        "error-container": "#ffdad6"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .tonal-shift { transition: background-color 0.3s ease; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-surface antialiased">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-[#f8f9fa] dark:bg-slate-900/90 backdrop-blur-md">
+<div class="flex justify-between items-center px-6 h-16 w-full max-w-screen-xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="minimalist professional corporate headshot of a person with clean lighting and neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAtCvyj3YcS1v0V_-DaBpkPkUdQEKd6MwYRoaaVV3whEeJK-qj9XLIHHSH-II9giggj315wzMtZM8YiqDTJf0gMBxsATFPO4lBpNb7FLqUW4ZyP7Jzur_C0wWwdGssW2OtEP3i14V-uSUxwPOWUyTHu6PrkaanFRHt0QjlODw2WJRBuG0lLnlshAHAN2YslvPtiggQ6ZCNX43EORwDzEGnGlW1Eu6oEO7plpgu28LN9ShWCK23XTQf_inKnIcU3U2QMmO2AB3B2uqm"/>
+</div>
+<span class="text-xl font-extrabold text-[#002046] dark:text-blue-200 font-headline tracking-tight">The Ledger</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-[#edeeef] dark:hover:bg-slate-800 transition-colors text-[#002046] dark:text-blue-400">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="pt-20 pb-32 px-6">
+<!-- Dashboard Greeting -->
+<header class="mb-8">
+<p class="font-label text-[10px] font-semibold uppercase tracking-widest text-on-surface-variant mb-1">Stock Overview</p>
+<h1 class="font-headline text-2xl font-extrabold text-primary tracking-tight">Raw Materials</h1>
+</header>
+<!-- Asymmetric KPI Section (Bento Style) -->
+<div class="grid grid-cols-12 gap-4 mb-8">
+<!-- Primary KPI Card -->
+<div class="col-span-12 bg-primary-container rounded-xl p-6 shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="z-10">
+<p class="font-label text-[10px] font-semibold uppercase tracking-widest text-on-primary-container mb-2">Total Inventory Value</p>
+<h2 class="font-headline text-3xl font-bold text-white mb-1">$482,950.00</h2>
+<div class="flex items-center gap-1 text-secondary-fixed text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+12.4% this month</span>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-8xl" data-icon="payments">payments</span>
+</div>
+</div>
+<!-- Secondary KPI Card -->
+<div class="col-span-7 bg-white rounded-xl p-5 shadow-sm border border-transparent flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-3">
+<div class="p-1.5 rounded-lg bg-error-container text-on-error-container">
+<span class="material-symbols-outlined text-lg" data-icon="warning">warning</span>
+</div>
+<p class="font-label text-[10px] font-semibold uppercase tracking-wider text-on-surface-variant">Low Stock</p>
+</div>
+<div>
+<h3 class="font-headline text-2xl font-bold text-primary">14</h3>
+<p class="text-[11px] text-outline">SKUs below safety level</p>
+</div>
+</div>
+<!-- Tertiary KPI Card -->
+<div class="col-span-5 bg-secondary-container rounded-xl p-5 shadow-sm flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-3">
+<div class="p-1.5 rounded-lg bg-on-secondary-container/10 text-on-secondary-container">
+<span class="material-symbols-outlined text-lg" data-icon="local_shipping">local_shipping</span>
+</div>
+<p class="font-label text-[10px] font-semibold uppercase tracking-wider text-on-secondary-fixed-variant">Incoming</p>
+</div>
+<div>
+<h3 class="font-headline text-2xl font-bold text-on-secondary-container">08</h3>
+<p class="text-[11px] text-on-secondary-container/70">Pending POs</p>
+</div>
+</div>
+</div>
+<!-- Filter & Search Section -->
+<section class="mb-6">
+<div class="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+<button class="flex-none bg-primary text-white font-label text-[11px] font-semibold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all">All Stock</button>
+<button class="flex-none bg-surface-container-high text-on-surface-variant font-label text-[11px] font-semibold uppercase tracking-wider px-5 py-2.5 rounded-full hover:bg-surface-container-highest transition-all">Wood</button>
+<button class="flex-none bg-surface-container-high text-on-surface-variant font-label text-[11px] font-semibold uppercase tracking-wider px-5 py-2.5 rounded-full hover:bg-surface-container-highest transition-all">Metal</button>
+<button class="flex-none bg-surface-container-high text-on-surface-variant font-label text-[11px] font-semibold uppercase tracking-wider px-5 py-2.5 rounded-full hover:bg-surface-container-highest transition-all">Fabrics</button>
+</div>
+</section>
+<!-- Material Ledger List -->
+<section class="space-y-4">
+<div class="flex items-center justify-between px-1">
+<h3 class="font-headline text-sm font-bold text-primary">Inventory Items</h3>
+<button class="text-secondary text-xs font-semibold flex items-center gap-1">
+                    Sort by: Quantity <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+<!-- Item 1: Low Stock -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border-l-4 border-error">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-headline text-sm font-bold text-primary">Black Walnut Planks</h4>
+<p class="font-label text-[10px] text-outline uppercase tracking-tighter">SKU: BW-4402-LG</p>
+</div>
+<span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Low Stock</span>
+</div>
+<div class="flex justify-between items-end mt-4">
+<div class="flex gap-4">
+<div>
+<p class="text-[10px] text-outline-variant font-semibold uppercase">Quantity</p>
+<p class="font-headline text-lg font-bold text-primary">120 <span class="text-xs text-outline font-normal">bd ft</span></p>
+</div>
+<div>
+<p class="text-[10px] text-outline-variant font-semibold uppercase">Reorder</p>
+<p class="font-headline text-lg font-bold text-error">250</p>
+</div>
+</div>
+<button class="bg-surface-container-high p-2 rounded-lg text-primary hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+</button>
+</div>
+</div>
+<!-- Item 2: Optimal -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border-l-4 border-secondary-fixed">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-headline text-sm font-bold text-primary">Brushed Brass Tubing</h4>
+<p class="font-label text-[10px] text-outline uppercase tracking-tighter">SKU: MET-BB-88</p>
+</div>
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Optimal</span>
+</div>
+<div class="flex justify-between items-end mt-4">
+<div class="flex gap-4">
+<div>
+<p class="text-[10px] text-outline-variant font-semibold uppercase">Quantity</p>
+<p class="font-headline text-lg font-bold text-primary">1,450 <span class="text-xs text-outline font-normal">units</span></p>
+</div>
+<div>
+<p class="text-[10px] text-outline-variant font-semibold uppercase">Reorder</p>
+<p class="font-headline text-lg font-bold text-outline">500</p>
+</div>
+</div>
+<button class="bg-surface-container-high p-2 rounded-lg text-primary hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+</button>
+</div>
+</div>
+<!-- Item 3: Optimal -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border-l-4 border-secondary-fixed">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-headline text-sm font-bold text-primary">European Linen - Flax</h4>
+<p class="font-label text-[10px] text-outline uppercase tracking-tighter">SKU: FAB-LIN-01</p>
+</div>
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Optimal</span>
+</div>
+<div class="flex justify-between items-end mt-4">
+<div class="flex gap-4">
+<div>
+<p class="text-[10px] text-outline-variant font-semibold uppercase">Quantity</p>
+<p class="font-headline text-lg font-bold text-primary">840 <span class="text-xs text-outline font-normal">yards</span></p>
+</div>
+<div>
+<p class="text-[10px] text-outline-variant font-semibold uppercase">Reorder</p>
+<p class="font-headline text-lg font-bold text-outline">200</p>
+</div>
+</div>
+<button class="bg-surface-container-high p-2 rounded-lg text-primary hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+</button>
+</div>
+</div>
+<!-- Item 4: Low Stock -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border-l-4 border-error">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-headline text-sm font-bold text-primary">Tempered Glass Panes</h4>
+<p class="font-label text-[10px] text-outline uppercase tracking-tighter">SKU: GLS-TEMP-48</p>
+</div>
+<span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Low Stock</span>
+</div>
+<div class="flex justify-between items-end mt-4">
+<div class="flex gap-4">
+<div>
+<p class="text-[10px] text-outline-variant font-semibold uppercase">Quantity</p>
+<p class="font-headline text-lg font-bold text-primary">42 <span class="text-xs text-outline font-normal">sheets</span></p>
+</div>
+<div>
+<p class="text-[10px] text-outline-variant font-semibold uppercase">Reorder</p>
+<p class="font-headline text-lg font-bold text-error">100</p>
+</div>
+</div>
+<button class="bg-surface-container-high p-2 rounded-lg text-primary hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-28 right-6 w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center z-40 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl" data-icon="add">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<footer class="fixed bottom-0 left-0 w-full z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,32,70,0.04)] border-t border-slate-100 dark:border-slate-800">
+<div class="flex justify-around items-center px-4 pb-6 pt-3">
+<!-- Nav Item: Dashboard -->
+<button class="flex flex-col items-center justify-center text-[#44474E] dark:text-slate-500 px-3 py-1.5 hover:text-[#1B365D] dark:hover:text-blue-200 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined mb-1" data-icon="dashboard">dashboard</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider">Dashboard</span>
+</button>
+<!-- Nav Item: Orders -->
+<button class="flex flex-col items-center justify-center text-[#44474E] dark:text-slate-500 px-3 py-1.5 hover:text-[#1B365D] dark:hover:text-blue-200 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined mb-1" data-icon="inventory_2">inventory_2</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider">Orders</span>
+</button>
+<!-- Nav Item: Customers -->
+<button class="flex flex-col items-center justify-center text-[#44474E] dark:text-slate-500 px-3 py-1.5 hover:text-[#1B365D] dark:hover:text-blue-200 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined mb-1" data-icon="groups">groups</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider">Customers</span>
+</button>
+<!-- Nav Item: Inventory (ACTIVE) -->
+<button class="flex flex-col items-center justify-center bg-[#002046] text-white dark:bg-blue-600 rounded-xl px-3 py-1.5 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined mb-1" data-icon="factory">factory</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider">Inventory</span>
+</button>
+<!-- Nav Item: More -->
+<button class="flex flex-col items-center justify-center text-[#44474E] dark:text-slate-500 px-3 py-1.5 hover:text-[#1B365D] dark:hover:text-blue-200 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined mb-1" data-icon="more_horiz">more_horiz</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider">More</span>
+</button>
+</div>
+</footer>
+</body></html>

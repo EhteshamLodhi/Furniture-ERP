@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Entry | The Ledger</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#006e6e",
+                    "primary-fixed": "#d6e3ff",
+                    "on-surface": "#191c1d",
+                    "on-secondary-fixed-variant": "#004f4f",
+                    "surface-container": "#edeeef",
+                    "inverse-primary": "#aec7f7",
+                    "surface-container-highest": "#e1e3e4",
+                    "primary-container": "#1b365d",
+                    "error": "#ba1a1a",
+                    "background": "#f8f9fa",
+                    "tertiary-fixed": "#ffddb9",
+                    "tertiary-container": "#4f2f00",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "secondary-fixed-dim": "#76d6d5",
+                    "inverse-on-surface": "#f0f1f2",
+                    "surface-container-high": "#e7e8e9",
+                    "surface-dim": "#d9dadb",
+                    "on-primary-fixed": "#001b3d",
+                    "outline": "#74777f",
+                    "on-tertiary-fixed": "#2b1700",
+                    "tertiary": "#321c00",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#93f2f2",
+                    "on-tertiary-container": "#c6965e",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#465f88",
+                    "secondary-container": "#90efef",
+                    "on-tertiary-fixed-variant": "#623f0f",
+                    "on-secondary-fixed": "#002020",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#aec7f7",
+                    "surface-variant": "#e1e3e4",
+                    "surface-container-low": "#f3f4f5",
+                    "on-primary-container": "#87a0cd",
+                    "tertiary-fixed-dim": "#f1bd81",
+                    "secondary": "#006a6a",
+                    "primary": "#002046",
+                    "on-background": "#191c1d",
+                    "on-surface-variant": "#44474e",
+                    "on-primary-fixed-variant": "#2e476f",
+                    "surface-bright": "#f8f9fa",
+                    "outline-variant": "#c4c6cf",
+                    "on-primary": "#ffffff",
+                    "surface": "#f8f9fa",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift { transition: background-color 0.3s ease; }
+        ::-webkit-scrollbar { display: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f8f9fa] dark:bg-slate-900/90 backdrop-blur-md">
+<div class="flex justify-between items-center px-6 h-16 w-full max-w-screen-xl mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
+<h1 class="font-headline font-bold text-lg tracking-tight text-[#002046]">The Ledger</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional portrait of a manufacturing manager in a clean studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaUH5FTi2VduqKffsEkyMpIe7xWqjTMzzeDh5oqYndn0RYZNVP9IZ9yqFJ9hGi69pfeBfynqYR4zljny00qEWMPnXhYNtlN1iPc1GD0ZRaKpX-UEv9cucsiEOuU6LrxvK5ag19kgR0R8KQms-ZtdbZ5-oOt88GzcsNS85HxHB6hP9y81y_jebZZ-EGBwrNJSgiHSO4kRHywNwnSlfR3FDmAtfoGSKnTd1J2h1V3MU8qWWGob48SxXN33IN7ZziFMi0d7o4H7iU5Ksj"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-20 pb-40 px-4 max-w-md mx-auto space-y-8">
+<!-- Order Status Stepper -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<span class="font-label text-[10px] font-semibold uppercase tracking-wider text-on-surface-variant">Order Status</span>
+<span class="text-secondary font-semibold text-xs bg-secondary-container px-2 py-1 rounded-full">Draft Mode</span>
+</div>
+<div class="relative flex justify-between items-start">
+<div class="absolute top-4 left-0 w-full h-[2px] bg-surface-container-highest -z-10"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-lg shadow-primary/20">1</div>
+<span class="font-label text-[10px] font-bold uppercase tracking-tighter text-primary">Details</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-sm font-bold">2</div>
+<span class="font-label text-[10px] font-medium uppercase tracking-tighter text-on-surface-variant">Review</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-sm font-bold">3</div>
+<span class="font-label text-[10px] font-medium uppercase tracking-tighter text-on-surface-variant">Confirm</span>
+</div>
+</div>
+</section>
+<!-- Order Information Form -->
+<section class="space-y-6">
+<h2 class="font-headline font-bold text-xl text-primary px-2">Order Configuration</h2>
+<div class="space-y-4">
+<!-- Customer Selection -->
+<div class="relative">
+<label class="absolute -top-2 left-3 px-1 bg-surface-container-lowest font-label text-[10px] font-bold uppercase tracking-wider text-on-surface-variant z-10">Customer</label>
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center justify-between group focus-within:ring-2 ring-primary transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="person">person</span>
+<span class="font-medium text-on-surface">Atelier Design Group</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<!-- Showroom Selection -->
+<div class="relative">
+<label class="absolute -top-2 left-3 px-1 bg-surface-container-lowest font-label text-[10px] font-bold uppercase tracking-wider text-on-surface-variant z-10">Showroom</label>
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="store">store</span>
+<span class="font-medium text-on-surface">Madison Avenue Flagship</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<!-- Delivery Date -->
+<div class="relative">
+<label class="absolute -top-2 left-3 px-1 bg-surface-container-lowest font-label text-[10px] font-bold uppercase tracking-wider text-on-surface-variant z-10">Target Delivery</label>
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="calendar_today">calendar_today</span>
+<span class="font-medium text-on-surface">October 24, 2024</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="edit_calendar">edit_calendar</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Item Manifest -->
+<section class="space-y-4">
+<div class="flex justify-between items-end px-2">
+<h2 class="font-headline font-bold text-xl text-primary">Item Manifest</h2>
+<button class="text-secondary font-bold text-xs uppercase tracking-widest flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+                    Add Item
+                </button>
+</div>
+<div class="space-y-3">
+<!-- Item Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary opacity-20"></div>
+<div class="flex gap-4">
+<div class="w-20 h-20 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="high-end minimalist walnut dining chair with dark upholstery on a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR-G-x3DOp_5GCj94WnLhnw4iJuuBtAGeYfAsMDDqj-7tWGN1Taf0OPJ9ALA5YHiuW8vynm4QgjZ4HhUGYP740pdDCUuMXmfcK5wuMuPuVszldvx81jomnyYTCwRz9Sox4Hr3yvYAegv6vb4JbqrJtQjilEXGfLR0CFlrLgzEQ7nDl_l6wAbwGmTPPGBiTcoP5jNgE3gs8eyjUEVi6DKeF9MA4Xr-8IJ6plpTnkui9e9NfHJcg7sNiGnKhMg55M0_Hi1hbK-Ho6V5u"/>
+</div>
+<div class="flex-grow space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-on-surface leading-tight">Eames-Style Lounge Chair</h3>
+<span class="material-symbols-outlined text-outline-variant text-lg" data-icon="more_vert">more_vert</span>
+</div>
+<p class="text-xs text-on-surface-variant font-medium">SKU: CH-WL-0042</p>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-3 bg-surface-container-low rounded-full px-2 py-1">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="remove">remove</span>
+<span class="font-bold text-sm px-1">02</span>
+<span class="material-symbols-outlined text-sm text-primary" data-icon="add">add</span>
+</div>
+<span class="font-headline font-bold text-primary">$4,850.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Item Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary opacity-20"></div>
+<div class="flex gap-4">
+<div class="w-20 h-20 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="architectural brass pendant light with warm soft glow in a minimalist room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqmaGjiCfDLd9fcpHMOty_7PS9TN846kwUug-fcYKPDlWzG0kjp5-u8hHW1HrX971GyzMBj3ht60V9kMzepOnaxjM4IvUoV32GlS2CHRdwQ6fGZ8z86qhEBknVTmCa7N6UQgBcTuwbknekNeN_Lye632S_0-gu-RQLxDN_UyPA1RqU8rf6RLaVD-4wS-_XEidFIbeKvYgRLahq7Ei5yhWAW7-gUdPIWuOPdGJtiTdhPyrPh7Kz8s39Q9ID0G9sAURnw7Whvsrjn7JH"/>
+</div>
+<div class="flex-grow space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-on-surface leading-tight">Brushed Brass Pendant</h3>
+<span class="material-symbols-outlined text-outline-variant text-lg" data-icon="more_vert">more_vert</span>
+</div>
+<p class="text-xs text-on-surface-variant font-medium">SKU: LG-BR-9912</p>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-3 bg-surface-container-low rounded-full px-2 py-1">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="remove">remove</span>
+<span class="font-bold text-sm px-1">01</span>
+<span class="material-symbols-outlined text-sm text-primary" data-icon="add">add</span>
+</div>
+<span class="font-headline font-bold text-primary">$1,290.00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Action & Summary -->
+<footer class="fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800 z-50">
+<div class="max-w-md mx-auto px-6 pt-4 pb-8 space-y-4">
+<div class="space-y-1">
+<div class="flex justify-between items-center text-xs text-on-surface-variant font-medium uppercase tracking-wider">
+<span>Subtotal</span>
+<span>$10,990.00</span>
+</div>
+<div class="flex justify-between items-center text-xs text-on-surface-variant font-medium uppercase tracking-wider">
+<span>Shipping &amp; Handling</span>
+<span>$450.00</span>
+</div>
+<div class="flex justify-between items-center pt-2">
+<span class="font-headline font-bold text-primary">Total Amount</span>
+<span class="font-headline font-extrabold text-2xl text-primary tracking-tight">$11,440.00</span>
+</div>
+</div>
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-white py-4 rounded-xl font-bold uppercase tracking-[0.1em] text-sm shadow-xl shadow-primary/20 hover:scale-[0.98] transition-transform active:duration-150">
+                Continue to Review
+            </button>
+</div>
+</footer>
+<!-- BottomNavBar (Hidden on this transactional screen as per suppression rules) -->
+<!-- But included visually as requested if it were a top-level screen, commented for logic -->
+<!-- 
+    <nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/95 backdrop-blur-xl z-50 shadow-[0_-4px_24px_rgba(0,32,70,0.04)]">
+        <div class="flex flex-col items-center justify-center text-[#44474E] px-3 py-1.5">
+            <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+            <span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Dashboard</span>
+        </div>
+        <div class="flex flex-col items-center justify-center bg-[#002046] text-white rounded-xl px-3 py-1.5">
+            <span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+            <span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Orders</span>
+        </div>
+    </nav> 
+    -->
+</body></html>
