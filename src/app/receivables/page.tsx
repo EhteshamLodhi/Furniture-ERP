@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { formatCurrency, formatDate } from '@/lib/utils';
 import { getReceivables } from '@/lib/actions/accounting';
 import PaymentAction from '@/components/PaymentAction';

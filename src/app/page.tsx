@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import Link from 'next/link';
 import { formatCurrency } from '@/lib/utils';
 import { getDashboardData } from '@/lib/actions/dashboard';

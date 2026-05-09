@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getSale } from '@/lib/actions/sales';
 import { getMaterials } from '@/lib/actions/inventory';
 import MaterialUsageForm from '@/components/forms/MaterialUsageForm';

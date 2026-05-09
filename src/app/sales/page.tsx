@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import Link from 'next/link';
 import { getSales } from '@/lib/actions/sales';
 import { formatCurrency, formatDate, cn } from '@/lib/utils';

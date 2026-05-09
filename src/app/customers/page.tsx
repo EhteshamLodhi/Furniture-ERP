@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import Link from 'next/link';
 import { getCustomers } from '@/lib/actions/customers';
 import CustomerList from './CustomerList';

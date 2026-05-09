@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import SaleEntryForm from '@/components/forms/SaleEntryForm';
 import { getCustomers } from '@/lib/actions/customers';
 

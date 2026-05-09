@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getSale } from '@/lib/actions/sales';
 import SaleClosingForm from '@/components/forms/SaleClosingForm';
 import { notFound } from 'next/navigation';

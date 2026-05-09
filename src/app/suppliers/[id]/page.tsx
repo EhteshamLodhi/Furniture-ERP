@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import Link from 'next/link';
 import { getSupplierById, getSupplierPurchases } from '@/lib/actions/suppliers';
 import { notFound } from 'next/navigation';

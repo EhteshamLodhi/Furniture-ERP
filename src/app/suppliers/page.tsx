@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import Link from 'next/link';
 import { formatCurrency, getInitials, cn } from '@/lib/utils';
 import { getSuppliers } from '@/lib/actions/suppliers';

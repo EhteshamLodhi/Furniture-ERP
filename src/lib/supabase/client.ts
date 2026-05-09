@@ -1,14 +1,12 @@
 import { createBrowserClient } from '@supabase/ssr';
 
 export function createClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!url || !key) {
-    // Return a dummy client during build if variables are missing
-    // This allows the build to finish, but the app will require these vars at runtime
+  try {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if (!url || !key) return null as any;
+    return createBrowserClient(url, key);
+  } catch {
     return null as any;
   }
-
-  return createBrowserClient(url, key);
 }
