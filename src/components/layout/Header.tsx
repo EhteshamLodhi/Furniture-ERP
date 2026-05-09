@@ -33,7 +33,7 @@ export default function Header() {
     };
     fetchInitialNotifications();
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event: any, session: any) => {
       setUser(session?.user ?? null);
       if (!session) setNotifications([]);
     });
@@ -48,7 +48,7 @@ export default function Header() {
           schema: 'public',
           table: 'notifications'
         },
-        (payload) => {
+        (payload: any) => {
           if (payload.eventType === 'INSERT') {
             setNotifications(prev => [payload.new as LedgerNotification, ...prev]);
           } else if (payload.eventType === 'UPDATE') {

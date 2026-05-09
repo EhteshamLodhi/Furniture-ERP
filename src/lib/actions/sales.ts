@@ -44,7 +44,7 @@ export async function createSaleEntry(saleData: any, items: any[]) {
 
   // 2. Insert Items
   if (items.length > 0) {
-    const saleItems = items.map(item => ({
+    const saleItems = items.map((item: any) => ({
       sale_id: sale.id,
       item_name: item.item_name,
       quantity: item.quantity,
@@ -66,7 +66,7 @@ export async function recordMaterialUsage(saleId: string, usages: any[]) {
   const supabase = await createClient();
   
   if (usages.length > 0) {
-    const usageData = usages.map(u => ({
+    const usageData = usages.map((u: any) => ({
       sale_id: saleId,
       material_id: u.material_id,
       quantity_used: u.quantity_used,
@@ -161,8 +161,8 @@ export async function deleteSale(saleId: string) {
     throw new Error(totalsError?.message || paymentsTotalsError?.message || 'Sale deleted but customer totals could not be refreshed.');
   }
 
-  const totalSales = (remainingSales ?? []).reduce((sum, item) => sum + Number(item.total_amount || 0), 0);
-  const totalPayments = (remainingPayments ?? []).reduce((sum, item) => sum + Number(item.amount || 0), 0);
+  const totalSales = (remainingSales ?? []).reduce((sum: number, item: any) => sum + Number(item.total_amount || 0), 0);
+  const totalPayments = (remainingPayments ?? []).reduce((sum: number, item: any) => sum + Number(item.amount || 0), 0);
 
   const { error: customerError } = await supabase
     .from('customers')

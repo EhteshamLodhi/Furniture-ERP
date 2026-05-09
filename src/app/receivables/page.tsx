@@ -18,7 +18,7 @@ type ReceivableRow = {
 export default async function ReceivablesPage() {
   const receivables = await getReceivables();
   
-  const totalOutstanding = (receivables || []).reduce((sum, r) => sum + (r.balance || 0), 0);
+  const totalOutstanding = (receivables || []).reduce((sum: number, r: ReceivableRow) => sum + (r.balance || 0), 0);
   const totalInvoices = receivables?.length || 0;
 
   return (

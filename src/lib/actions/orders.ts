@@ -53,7 +53,7 @@ export async function createOrder(order: Partial<Order>, items: any[]) {
   if (orderError) throw new Error(orderError.message);
 
   // 2. Create order items
-  const orderItems = items.map(item => ({
+  const orderItems = items.map((item: any) => ({
     order_id: orderData.id,
     material_id: item.material_id,
     quantity: item.quantity,

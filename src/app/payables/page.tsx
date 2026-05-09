@@ -18,7 +18,7 @@ type PayableRow = {
 export default async function PayablesPage() {
   const payables = await getPayables();
   
-  const totalOutstanding = (payables || []).reduce((sum, p) => sum + (p.balance || 0), 0);
+  const totalOutstanding = (payables || []).reduce((sum: number, p: PayableRow) => sum + (p.balance || 0), 0);
   const totalInvoices = payables?.length || 0;
 
   return (

@@ -29,7 +29,7 @@ export async function getIntelligenceReport() {
   let totalRevenue = 0;
   let totalCOGS = 0;
 
-  orders?.forEach(order => {
+  orders?.forEach((order: any) => {
     totalRevenue += order.total || 0;
     order.order_items?.forEach((item: any) => {
       totalCOGS += (item.materials?.unit_cost || 0) * (item.quantity || 0);
@@ -41,13 +41,13 @@ export async function getIntelligenceReport() {
     : 0;
 
   // 4. Showroom Performance (Fetch real aggregated data)
-  const showroomPerformance = await Promise.all((showrooms || []).map(async s => {
+  const showroomPerformance = await Promise.all((showrooms || []).map(async (s: any) => {
     const { data: sales } = await supabase
       .from('orders')
       .select('total')
       .eq('showroom_id', s.id);
     
-    const revenue = sales?.reduce((sum, o) => sum + (o.total || 0), 0) || 0;
+    const revenue = sales?.reduce((sum: number, o: any) => sum + (o.total || 0), 0) || 0;
     
     return {
       name: s.name,

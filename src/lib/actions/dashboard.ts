@@ -23,13 +23,13 @@ export async function getDashboardData() {
     supabase.from('payments_received').select('amount').gte('created_at', firstDayOfMonth)
   ]);
 
-  const totalReceivables = receivables?.reduce((sum, r) => sum + (r.balance || 0), 0) || 0;
-  const totalPayables = payables?.reduce((sum, p) => sum + (p.balance || 0), 0) || 0;
-  const totalStockValue = materials?.reduce((sum, m) => sum + (m.stock_quantity * m.unit_cost), 0) || 0;
-  const lowStockCount = materials?.filter(m => m.stock_quantity < 10).length || 0;
+  const totalReceivables = receivables?.reduce((sum: number, r: any) => sum + (r.balance || 0), 0) || 0;
+  const totalPayables = payables?.reduce((sum: number, p: any) => sum + (p.balance || 0), 0) || 0;
+  const totalStockValue = materials?.reduce((sum: number, m: any) => sum + (m.stock_quantity * m.unit_cost), 0) || 0;
+  const lowStockCount = materials?.filter((m: any) => m.stock_quantity < 10).length || 0;
 
-  const currentRevenue = salesMonth?.reduce((sum, o) => sum + (o.total_amount || 0), 0) || 0;
-  const currentPayments = paymentsReceivedMonth?.reduce((sum, p) => sum + (p.amount || 0), 0) || 0;
+  const currentRevenue = salesMonth?.reduce((sum: number, o: any) => sum + (o.total_amount || 0), 0) || 0;
+  const currentPayments = paymentsReceivedMonth?.reduce((sum: number, p: any) => sum + (p.amount || 0), 0) || 0;
 
   const kpis = {
     totalSalesMonth: currentRevenue,
@@ -47,7 +47,7 @@ export async function getDashboardData() {
   ]);
 
   const transactions = [
-    ...(pr || []).map(p => ({
+    ...(pr || []).map((p: any) => ({
       id: `pr-${p.id}`,
       description: `Payment from ${(p.customers as any)?.name}`,
       reference: `Received via ${p.method}`,
@@ -56,7 +56,7 @@ export async function getDashboardData() {
       icon: 'arrow_downward',
       date: p.created_at
     })),
-    ...(pm || []).map(p => ({
+    ...(pm || []).map((p: any) => ({
       id: `pm-${p.id}`,
       description: `Payment to ${(p.suppliers as any)?.name}`,
       reference: `Sent via ${p.method}`,

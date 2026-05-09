@@ -26,7 +26,7 @@ export default function NotificationHeader() {
     // Subscribe to new notifications
     const channel = supabase
       .channel('public:notifications')
-      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'notifications' }, payload => {
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'notifications' }, (payload: any) => {
         setNotifications(prev => [payload.new as Notification, ...prev]);
       })
       .subscribe();

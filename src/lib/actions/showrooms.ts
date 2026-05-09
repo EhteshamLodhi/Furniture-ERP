@@ -54,7 +54,7 @@ export async function getShowroomMonthlySales() {
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const grouped: Record<string, { sales: number; margin: number }> = {};
 
-  (data ?? []).forEach((order) => {
+  (data ?? []).forEach((order: any) => {
     const date = new Date(order.created_at);
     const key = months[date.getMonth()];
     if (!grouped[key]) grouped[key] = { sales: 0, margin: 0 };
