@@ -65,23 +65,29 @@
   --color-inverse-surface: #2e3132;
   --color-inverse-on-surface: #f0f1f2;
 
-  --font-family-headline: 'Manrope', sans-serif;
-  --font-family-body: 'Inter', sans-serif;
-  --font-family-label: 'Inter', sans-serif;
+  /* Families come from next/font (see app/layout.tsx). Declared in the
+     `--font-*` namespace so Tailwind emits the font-headline/body/label
+     utilities this app uses. */
+  --font-headline: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-label: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* ---- Base Styles ---- */
 body {
-  font-family: var(--font-family-body);
+  font-family: var(--font-body);
   background-color: var(--color-background);
   color: var(--color-on-surface);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior-y: none;
+  /* Belt and braces against a single wide child scrolling the whole page. */
+  overflow-x: hidden;
 }
 
 html {
   background-color: var(--color-background);
+  scroll-behavior: smooth;
 }
 
 * {
@@ -89,17 +95,7 @@ html {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-headline);
-}
-
-/* ---- Material Symbols ---- */
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  vertical-align: middle;
-}
-
-.material-symbols-outlined.filled {
-  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-family: var(--font-headline);
 }
 
 /* ---- Glassmorphism ---- */
@@ -197,17 +193,12 @@ h1, h2, h3, h4, h5, h6 {
     touch-action: manipulation;
   }
 
+  /* 16px keeps iOS Safari from zooming the viewport on focus. */
   input,
   select,
   textarea {
     min-height: 48px;
     font-size: 16px;
-  }
-
-  table {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
   }
 }
 
@@ -215,5 +206,148 @@ h1, h2, h3, h4, h5, h6 {
   body {
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* =============================================
+   View Transitions — navigation choreography
+   =============================================
+   Horizontal direction encodes history: content leaves left when moving
+   deeper, right when returning. Links tagged `transitionTypes={['nav-back']}`
+   play the reverse. Chrome (header, sidebar, bottom nav) is anchored so the
+   user keeps a fixed spatial reference while content moves.
+   ============================================= */
+
+::view-transition-old(.nav-forward) {
+  --slide-offset: -48px;
+  animation:
+    140ms ease-in both vt-fade reverse,
+    320ms ease-in-out both vt-slide reverse;
+}
+::view-transition-new(.nav-forward) {
+  --slide-offset: 48px;
+  animation:
+    200ms ease-out 120ms both vt-fade,
+    320ms ease-in-out both vt-slide;
+}
+
+::view-transition-old(.nav-back) {
+  --slide-offset: 48px;
+  animation:
+    140ms ease-in both vt-fade reverse,
+    320ms ease-in-out both vt-slide reverse;
+}
+::view-transition-new(.nav-back) {
+  --slide-offset: -48px;
+  animation:
+    200ms ease-out 120ms both vt-fade,
+    320ms ease-in-out both vt-slide;
+}
+
+@keyframes vt-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes vt-slide {
+  from { translate: var(--slide-offset); }
+  to { translate: 0; }
+}
+
+/* Anchored chrome: never animate, always paint above sliding content. */
+::view-transition-group(site-header),
+::view-transition-group(site-sidebar),
+::view-transition-group(site-bottom-nav) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header),
+::view-transition-old(site-sidebar),
+::view-transition-old(site-bottom-nav) {
+  display: none;
+}
+::view-transition-new(site-header),
+::view-transition-new(site-sidebar),
+::view-transition-new(site-bottom-nav) {
+  animation: none;
+}
+
+/* ---- Entrances for content that mounts without a route change ---- */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise-in {
+  animation: rise-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fade-in 200ms ease-out both;
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up {
+  animation: slide-up 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes slide-in-left {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+.animate-slide-in-left {
+  animation: slide-in-left 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+.animate-shake {
+  animation: shake 0.2s ease-in-out 0s 2;
+}
+
+@keyframes slow-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+.animate-slow-zoom {
+  animation: slow-zoom 20s infinite alternate ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+  }
+
+  .animate-rise-in,
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-slide-in-left,
+  .animate-shake,
+  .animate-slow-zoom,
+  .pulse-dot,
+  .skeleton {
+    animation: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
   }
 }

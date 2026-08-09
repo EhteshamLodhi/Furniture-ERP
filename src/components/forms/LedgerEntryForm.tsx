@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { cn } from '@/lib/utils';
+import Icon from '@/components/ui/Icon';
 
 const categories = ['General', 'Sales Receipt', 'Expense Payment', 'Petty Cash', 'Rent', 'Utilities', 'Payroll'];
 
@@ -157,13 +158,13 @@ export default function LedgerEntryForm({ showrooms }: { showrooms: any[] }) {
 
       {error && (
         <div className="p-4 bg-error-container text-on-error-container rounded-xl text-sm font-medium flex items-center gap-3">
-          <span className="material-symbols-outlined">error</span>
+          <Icon name="error" />
           {error}
         </div>
       )}
 
       <div className="fixed bottom-0 left-0 w-full lg:left-64 glass-panel z-50 px-6 py-4">
-        <div className="max-w-screen-xl mx-auto flex gap-4">
+        <div className="max-w-[80rem] mx-auto flex gap-4">
           <button
             type="button"
             onClick={() => router.back()}
@@ -180,7 +181,7 @@ export default function LedgerEntryForm({ showrooms }: { showrooms: any[] }) {
               <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
             ) : (
               <>
-                <span className="material-symbols-outlined">receipt_long</span>
+                <Icon name="receipt_long" />
                 Record Entry
               </>
             )}

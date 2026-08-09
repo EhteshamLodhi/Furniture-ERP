@@ -21,7 +21,7 @@ async function seed() {
 
   // 1. Create Admin User
   console.log('--- Creating Admin User ---');
-  const { data: userData, error: userError } = await supabase.auth.admin.createUser({
+  const { error: userError } = await supabase.auth.admin.createUser({
     email: 'admin@ledger.com',
     password: 'Artisan123!',
     email_confirm: true,

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-object-type */
 
 /** ================================================
  *  Database Types — Simplified 3-Stage Workflow

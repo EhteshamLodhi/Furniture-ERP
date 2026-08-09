@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createSaleEntry } from '@/lib/actions/sales';
 import { formatCurrency } from '@/lib/utils';
+import Icon from '@/components/ui/Icon';
 
 export default function SaleEntryForm({ customers }: { customers: any[] }) {
   const router = useRouter();
@@ -129,7 +130,7 @@ export default function SaleEntryForm({ customers }: { customers: any[] }) {
               </div>
               {items.length > 1 && (
                 <button type="button" onClick={() => removeItem(index)} className="md:absolute -right-2 -top-2 w-6 h-6 rounded-full bg-error text-white flex items-center justify-center shadow-lg opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="material-symbols-outlined text-[14px]">close</span>
+                  <Icon name="close" className="text-[14px]" />
                 </button>
               )}
             </div>
@@ -146,13 +147,13 @@ export default function SaleEntryForm({ customers }: { customers: any[] }) {
 
       {error && (
         <div className="p-4 bg-error-container text-on-error-container rounded-xl text-sm font-medium flex items-center gap-3">
-          <span className="material-symbols-outlined">error</span>
+          <Icon name="error" />
           {error}
         </div>
       )}
 
       <div className="fixed bottom-0 left-0 w-full lg:left-64 glass-panel z-50 px-4 sm:px-6 pt-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)]">
-        <div className="max-w-screen-xl mx-auto flex gap-4">
+        <div className="max-w-[80rem] mx-auto flex gap-4">
           <button type="button" onClick={() => router.back()} className="flex-1 bg-surface-container-highest text-on-surface font-bold py-4 rounded-xl active:scale-95 transition-all">
             Cancel
           </button>

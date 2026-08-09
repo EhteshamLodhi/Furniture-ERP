@@ -7,6 +7,7 @@ import { deleteCustomer } from '@/lib/actions/customers';
 import { deleteSupplier } from '@/lib/actions/suppliers';
 import { deleteMaterial } from '@/lib/actions/inventory';
 import { deleteSale } from '@/lib/actions/sales';
+import Icon from '@/components/ui/Icon';
 
 type DeleteKind = 'customer' | 'supplier' | 'material' | 'sale';
 
@@ -74,7 +75,7 @@ export default function DeleteEntryButton({
         aria-label={`Delete ${label}`}
         title={`Delete ${label}`}
       >
-        <span className="material-symbols-outlined text-[18px]">delete</span>
+        <Icon name="delete" className="text-[18px]" />
         {variant === 'button' && <span className="ml-2">Delete</span>}
       </button>
 

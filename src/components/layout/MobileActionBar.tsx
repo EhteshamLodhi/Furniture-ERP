@@ -1,8 +1,9 @@
 import Link from 'next/link';
+import Icon, { type IconName } from '@/components/ui/Icon';
 
 type MobileAction = {
   href: string;
-  icon: string;
+  icon: IconName;
   label: string;
   primary?: boolean;
 };
@@ -19,7 +20,7 @@ export default function MobileActionBar({ actions }: { actions: MobileAction[] }
               action.primary ? 'gradient-cta text-white shadow-lg shadow-primary/20' : 'bg-surface-container-high text-primary'
             }`}
           >
-            <span className="material-symbols-outlined text-[18px]">{action.icon}</span>
+            <Icon name={action.icon} className="text-[18px]" />
             <span className="truncate">{action.label}</span>
           </Link>
         ))}

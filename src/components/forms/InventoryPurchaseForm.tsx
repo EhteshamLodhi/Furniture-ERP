@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createInventoryAddition } from '@/lib/actions/inventory';
 import { formatCurrency } from '@/lib/utils';
+import Icon from '@/components/ui/Icon';
 
 const paymentMethods = ['Cash', 'Bank Transfer', 'JazzCash', 'EasyPaisa', 'Other'];
 
@@ -63,7 +64,7 @@ export default function InventoryPurchaseForm({ materials, suppliers }: { materi
   if (success) {
     return (
       <div className="text-center py-16 bg-surface-container-lowest rounded-2xl shadow-card space-y-4">
-        <span className="material-symbols-outlined text-6xl text-secondary block">check_circle</span>
+        <Icon name="check_circle" className="text-6xl text-secondary block" />
         <p className="font-headline font-bold text-xl text-primary">Purchase Recorded!</p>
         <p className="text-sm text-on-surface-variant">Stock levels updated. Redirecting...</p>
       </div>
@@ -198,20 +199,20 @@ export default function InventoryPurchaseForm({ materials, suppliers }: { materi
 
       {error && (
         <div className="p-4 bg-error-container text-on-error-container rounded-xl text-sm font-medium flex items-center gap-3">
-          <span className="material-symbols-outlined">error</span>
+          <Icon name="error" />
           {error}
         </div>
       )}
 
       <div className="fixed bottom-0 left-0 w-full lg:left-64 glass-panel z-50 px-6 py-4">
-        <div className="max-w-screen-xl mx-auto flex gap-4">
+        <div className="max-w-[80rem] mx-auto flex gap-4">
           <button type="button" onClick={() => router.back()} className="flex-1 bg-surface-container-highest text-on-surface font-bold py-4 rounded-xl active:scale-95 transition-all">
             Cancel
           </button>
           <button type="submit" disabled={loading || totalCost <= 0} className="flex-[2] gradient-cta text-white font-bold py-4 rounded-xl shadow-lg active:scale-95 transition-all disabled:opacity-50 flex items-center justify-center gap-2">
             {loading ? <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : (
               <>
-                <span className="material-symbols-outlined text-sm">add_circle</span>
+                <Icon name="add_circle" className="text-sm" />
                 Record Purchase
               </>
             )}

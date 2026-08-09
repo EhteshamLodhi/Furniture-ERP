@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { recordPaymentReceived, recordPaymentMade } from '@/lib/actions/accounting';
 import { formatCurrency } from '@/lib/utils';
+import Icon from '@/components/ui/Icon';
 
 interface PaymentFormProps {
   invoiceId: string;
@@ -94,7 +95,7 @@ export default function PaymentForm({
 
       {error && (
         <div className="p-4 bg-error-container text-on-error-container rounded-xl text-sm font-medium flex items-center gap-3">
-          <span className="material-symbols-outlined">error</span>
+          <Icon name="error" />
           {error}
         </div>
       )}
@@ -118,7 +119,7 @@ export default function PaymentForm({
             <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
           ) : (
             <>
-              <span className="material-symbols-outlined">payments</span>
+              <Icon name="payments" />
               Confirm Payment
             </>
           )}

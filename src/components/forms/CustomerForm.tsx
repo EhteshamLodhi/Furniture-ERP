@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createCustomer, updateCustomer } from '@/lib/actions/customers';
 import type { Customer } from '@/lib/types';
-import { cn } from '@/lib/utils';
+import Icon from '@/components/ui/Icon';
 
 interface CustomerFormProps {
   initialData?: Customer;
@@ -116,14 +116,14 @@ export default function CustomerForm({ initialData }: CustomerFormProps) {
       </div>
 
       {error && (
-        <div className="p-4 bg-error-container text-on-error-container rounded-xl text-sm font-medium flex items-center gap-3 animate-in fade-in slide-in-from-top-2">
-          <span className="material-symbols-outlined">error</span>
+        <div className="p-4 bg-error-container text-on-error-container rounded-xl text-sm font-medium flex items-center gap-3 animate-rise-in">
+          <Icon name="error" />
           {error}
         </div>
       )}
 
       <div className="fixed bottom-0 left-0 w-full lg:left-64 glass-panel z-50 px-4 sm:px-6 pt-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)]">
-        <div className="max-w-screen-xl mx-auto flex gap-4">
+        <div className="max-w-[80rem] mx-auto flex gap-4">
           <button
             type="button"
             onClick={() => router.back()}
@@ -140,7 +140,7 @@ export default function CustomerForm({ initialData }: CustomerFormProps) {
               <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
             ) : (
               <>
-                <span className="material-symbols-outlined">save</span>
+                <Icon name="save" />
                 {initialData ? 'Update Customer' : 'Create Customer'}
               </>
             )}

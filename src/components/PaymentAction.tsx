@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Modal from '@/components/Modal';
 import PaymentForm from '@/components/forms/PaymentForm';
+import Icon from '@/components/ui/Icon';
 
 interface PaymentActionProps {
   invoiceId: string;
@@ -25,7 +26,7 @@ export default function PaymentAction({ invoiceId, invoiceNumber, remainingAmoun
         className="p-2 bg-secondary-container text-on-secondary-container rounded-lg hover:scale-105 active:scale-95 transition-all shadow-sm flex items-center justify-center group"
         title="Make Payment"
       >
-        <span className="material-symbols-outlined text-sm group-hover:text-primary transition-colors">payments</span>
+        <Icon name="payments" className="text-sm group-hover:text-primary transition-colors" />
       </button>
 
       {isOpen && (

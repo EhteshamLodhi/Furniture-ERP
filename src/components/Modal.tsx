@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
+import Icon from '@/components/ui/Icon';
 
 interface ModalProps {
   isOpen: boolean;
@@ -10,36 +11,59 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
+/** Portals need a DOM; this is the documented way to render client-only. */
+const subscribeToNothing = () => () => {};
+const isClient = () => true;
+const isServer = () => false;
+
 export default function Modal({ isOpen, onClose, title, children }: ModalProps) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(subscribeToNothing, isClient, isServer);
 
   useEffect(() => {
-    setMounted(true);
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
+    if (!isOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
     };
-  }, [isOpen]);
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   if (!mounted || !isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-4 animate-in fade-in duration-200">
-      <div className="absolute inset-0 bg-primary/20 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative bg-surface-container-lowest w-full max-w-md rounded-t-[2.5rem] sm:rounded-[2rem] shadow-elevated overflow-hidden animate-in slide-in-from-bottom duration-300">
-        <div className="p-6 tonal-separator flex justify-between items-center">
-          <h3 className="font-headline font-bold text-xl text-primary">{title}</h3>
-          <button onClick={onClose} className="p-2 hover:bg-surface-container rounded-full transition-colors">
-            <span className="material-symbols-outlined text-on-surface-variant">close</span>
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={title}
+      className="fixed inset-0 z-[100] flex items-end justify-center p-4 animate-fade-in sm:items-center"
+    >
+      <button
+        type="button"
+        aria-label="Close dialog"
+        className="absolute inset-0 bg-primary/20 backdrop-blur-sm"
+        onClick={onClose}
+      />
+      <div className="relative w-full max-w-md overflow-hidden rounded-t-[2.5rem] bg-surface-container-lowest shadow-elevated animate-slide-up sm:rounded-[2rem]">
+        <div className="flex items-center justify-between p-6 tonal-separator">
+          <h2 className="font-headline text-xl font-bold text-primary">{title}</h2>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-surface-container"
+          >
+            <Icon name="close" className="text-xl text-on-surface-variant" />
           </button>
         </div>
-        <div className="p-6">
-          {children}
-        </div>
+        <div className="max-h-[70dvh] overflow-y-auto p-6 custom-scrollbar">{children}</div>
       </div>
     </div>,
     document.body

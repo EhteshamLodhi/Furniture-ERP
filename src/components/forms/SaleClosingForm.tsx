@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { closeSale } from '@/lib/actions/sales';
 import { formatCurrency } from '@/lib/utils';
+import Icon from '@/components/ui/Icon';
 
 export default function SaleClosingForm({ sale }: { sale: any }) {
   const router = useRouter();
@@ -118,14 +119,14 @@ export default function SaleClosingForm({ sale }: { sale: any }) {
 
       {error && (
         <div className="p-4 bg-error-container text-on-error-container rounded-xl text-sm font-medium flex items-center gap-3">
-          <span className="material-symbols-outlined">error</span>
+          <Icon name="error" />
           {error}
         </div>
       )}
 
       {!isCompleted && (
         <div className="fixed bottom-0 left-0 w-full lg:left-64 glass-panel z-50 px-6 py-4">
-          <div className="max-w-screen-xl mx-auto flex gap-4">
+          <div className="max-w-[80rem] mx-auto flex gap-4">
             <button type="button" onClick={() => router.back()} className="flex-1 bg-surface-container-highest text-on-surface font-bold py-4 rounded-xl active:scale-95 transition-all">
               Cancel
             </button>

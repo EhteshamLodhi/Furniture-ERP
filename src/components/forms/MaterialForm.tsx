@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createMaterial } from '@/lib/actions/inventory';
 import type { Material } from '@/lib/types';
+import Icon from '@/components/ui/Icon';
 
 const categories = ['Sheet', 'Hardware', 'Cushion', 'PVC', 'Brass', 'Pegs', 'Glass', 'Other'];
 const units = ['units', 'meters', 'sq ft', 'kg', 'liters'];
@@ -129,13 +130,13 @@ export default function MaterialForm({ initialData }: { initialData?: Material }
 
       {error && (
         <div className="p-4 bg-error-container text-on-error-container rounded-xl text-sm font-medium flex items-center gap-3">
-          <span className="material-symbols-outlined">error</span>
+          <Icon name="error" />
           {error}
         </div>
       )}
 
       <div className="fixed bottom-0 left-0 w-full lg:left-64 glass-panel z-50 px-4 sm:px-6 pt-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)]">
-        <div className="max-w-screen-xl mx-auto flex gap-4">
+        <div className="max-w-[80rem] mx-auto flex gap-4">
           <button
             type="button"
             onClick={() => router.back()}
@@ -152,7 +153,7 @@ export default function MaterialForm({ initialData }: { initialData?: Material }
               <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
             ) : (
               <>
-                <span className="material-symbols-outlined">inventory</span>
+                <Icon name="inventory" />
                 {initialData ? 'Update Stock' : 'Add to Catalog'}
               </>
             )}

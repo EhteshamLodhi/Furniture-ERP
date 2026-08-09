@@ -17,6 +17,8 @@ declare module 'next-pwa' {
     register?: boolean;
     skipWaiting?: boolean;
     disable?: boolean;
+    reloadOnOnline?: boolean;
+    cacheOnFrontEndNav?: boolean;
     fallbacks?: Record<string, string>;
     runtimeCaching?: RuntimeCaching[];
     customWorkerDir?: string;

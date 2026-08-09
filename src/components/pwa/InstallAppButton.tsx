@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
+import Icon from '@/components/ui/Icon';
 
 type InstallAppButtonProps = {
   variant?: 'header' | 'sidebar' | 'compact';
@@ -39,7 +40,7 @@ export default function InstallAppButton({ variant = 'header', className }: Inst
         className
       )}
     >
-      <span className="material-symbols-outlined text-[18px]">install_mobile</span>
+      <Icon name="install_mobile" className="text-[18px]" />
       <span className={variant === 'compact' ? 'hidden min-[420px]:inline' : ''}>{label}</span>
     </button>
   );
