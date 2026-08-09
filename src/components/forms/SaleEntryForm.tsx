@@ -35,6 +35,12 @@ export default function SaleEntryForm({ customers }: { customers: any[] }) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!saleData.customer_id) {
+      setError('Add a customer before creating a sale.');
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
@@ -49,11 +55,28 @@ export default function SaleEntryForm({ customers }: { customers: any[] }) {
     }
   };
 
+  if (customers.length === 0) {
+    return (
+      <div className="bg-surface-container-lowest p-6 rounded-2xl shadow-card text-center space-y-4">
+        <Icon name="error" className="text-3xl text-on-surface-variant mx-auto" />
+        <p className="text-sm text-on-surface-variant">
+          You need at least one customer before you can create a sale.
+        </p>
+        <a
+          href="/customers/new"
+          className="inline-flex gradient-cta text-white font-bold px-6 py-3 rounded-xl shadow-lg active:scale-95 transition-all"
+        >
+          Add a Customer
+        </a>
+      </div>
+    );
+  }
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6 pb-24">
       <div className="bg-surface-container-lowest p-6 rounded-2xl shadow-card space-y-6">
         <h2 className="font-headline font-bold text-xl text-primary">Stage 1: Sale Details</h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Customer</label>
