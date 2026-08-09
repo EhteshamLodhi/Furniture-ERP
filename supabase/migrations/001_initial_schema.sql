@@ -370,3 +370,10 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER trigger_low_stock
 AFTER UPDATE ON materials
 FOR EACH ROW EXECUTE FUNCTION check_low_stock();
+
+-- =============================================
+-- REALTIME
+-- =============================================
+-- Header/NotificationHeader subscribe to postgres_changes on this table;
+-- without publication membership those subscriptions never fire.
+ALTER PUBLICATION supabase_realtime ADD TABLE notifications;
